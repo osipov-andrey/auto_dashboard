@@ -1,0 +1,44 @@
+#:kivy 1.0.9
+
+<Pointer>:
+    angle: 0
+    size: 5, 200
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: root.angle
+            axis: 0, 0, 1
+            origin: [root.center_x, root.center_y - 100]
+    canvas.after:
+        PopMatrix
+
+<Speedometer>:
+    pointer: my_pointer
+
+    Image:
+        source: 'speedometer.png'
+        size: self.texture_size
+        center_x: root.center_x
+        center_y: root.center_y
+
+    Pointer:
+        id: my_pointer
+        center_x: root.center_x
+        center_y: root.center_y + 100
+
+<Dashboard>:
+    speedometer: my_speedometer
+
+    Speedometer:
+        id: my_speedometer
+        center_x: root.center_x
+        center_y: root.center_y
+
+
+
+
+
